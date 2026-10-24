@@ -1,6 +1,6 @@
 # Jimat — OAuth homepage & privacy policy
 
-## ✅ LIVE (published 2026-10-24)
+## ✅ LIVE
 
 | Console field | Value |
 |---|---|
@@ -9,37 +9,46 @@
 | Authorized domain | `tansengkai.github.io` |
 | Terms of service | *(leave empty)* |
 
-Both URLs verified HTTP 200.
+Verified HTTP 200 — 2026-10-24 23:59.
 
-## How it is hosted
+## Hosting layout
 
-The pages live on the **`gh-pages` branch** of `tansengkai/Jimat`. GitHub Pages for that repo is
-served from `gh-pages`, which gives the `/Jimat/` path.
+- Repo: `tansengkai/Jimat` (public)
+- Branch: **`main`** (single branch — `gh-pages` was deleted once Pages could be retargeted)
+- Pages source: `main` / `/ (root)`, legacy build, HTTPS enforced
+- Live URL: `https://tansengkai.github.io/Jimat/`
+- HTML source of truth: `~/.openclaw/workspace/jimat-pages/`
 
-The calendar app keeps `https://tansengkai.github.io/` (its own repo) untouched, so its OAuth
-consent screen still works.
+The calendar app keeps `https://tansengkai.github.io/` from its own repo. Both coexist because
+Google accepts any path under an authorized domain.
 
-Source of truth for the HTML lives at `~/.openclaw/workspace/jimat-pages/`.
-
-## Updating the pages
+## Update workflow
 
 ```bash
 cd ~/.openclaw/workspace/jimat-pages
-# edit index.html / privacy.html
-git add -A && git commit -m "update"
-git push origin main          # main = repo content
-# then mirror to gh-pages:
-git subtree push --prefix . origin gh-pages   # or copy files and force-push as before
+# edit index.html / privacy.html / SETUP.md
+git add -A
+git commit -m "update pages"
+git push "https://x-access-token:$GH_TOKEN@github.com/tansengkai/Jimat.git" main
+# Pages rebuilds automatically in ~30-60s
 ```
 
-## Notes / gotchas
+## PAT notes (learned 2026-10-24)
 
-- The fine-grained PAT used on 2026-10-24 (`github_pat_11AEI…`, expires **2026-11-23**) has
-  **no Pages permission**, so `POST /repos/:owner/:repo/pages` returns 403. Pages was instead
-  picked up automatically from the `gh-pages` branch. To toggle Pages settings via API later, the
-  token needs **Repository permissions → Pages: Read and write**.
-- The token is also scoped to the **Jimat repo only** — it cannot write to
-  `tansengkai.github.io`, which is why the pages were not placed there.
+The fine-grained PAT must include, under **Repository permissions**:
+
+| Permission | Needed for |
+|---|---|
+| Contents: Read and write | pushing files |
+| **Pages: Read and write** | `GET/PUT/POST /repos/:owner/:repo/pages`, triggering builds |
+| Metadata: Read | mandatory baseline |
+
+Without **Pages: Read and write** every Pages endpoint returns
+`403 Resource not accessible by personal access token` — that was the original blocker.
+
+Fine-grained PATs are **per-repository**. A token scoped to `Jimat` only cannot write to
+`tansengkai.github.io`; to touch multiple repos, the token must list each one (or use a
+classic PAT with `repo` scope).
 
 ## Google Cloud Console
 
@@ -51,7 +60,15 @@ https://www.googleapis.com/auth/drive.file
 
 `drive.file` is **non-sensitive** → no Google verification review required. Set User type =
 External, then **Publish App → In production** so refresh tokens do not expire every 7 days
-(that was the recurring failure mode on the Calendar app).
+(the recurring failure mode on the Calendar app).
 
-If Jimat is in a *different Google account* than the calendar project, re-verify ownership of
+If Jimat lives in a different Google account than the calendar project, re-verify ownership of
 `tansengkai.github.io` in Search Console first.
+
+## Verification commands
+
+```bash
+curl -o /dev/null -w "%{http_code}\n" https://tansengkai.github.io/Jimat/
+curl -o /dev/null -w "%{http_code}\n" https://tansengkai.github.io/Jimat/privacy.html
+curl -s https://tansengkai.github.io/Jimat/privacy.html | grep -c "Limited Use"
+```
