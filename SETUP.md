@@ -1,6 +1,6 @@
 # Jimat — OAuth homepage & privacy policy
 
-Two static pages to satisfy Google Cloud Console → **OAuth consent screen → Branding**:
+## ✅ LIVE (published 2026-10-24)
 
 | Console field | Value |
 |---|---|
@@ -9,75 +9,49 @@ Two static pages to satisfy Google Cloud Console → **OAuth consent screen → 
 | Authorized domain | `tansengkai.github.io` |
 | Terms of service | *(leave empty)* |
 
-## Publish (5 minutes)
+Both URLs verified HTTP 200.
 
-### 1. Push the pages to the Jimat repo
+## How it is hosted
+
+The pages live on the **`gh-pages` branch** of `tansengkai/Jimat`. GitHub Pages for that repo is
+served from `gh-pages`, which gives the `/Jimat/` path.
+
+The calendar app keeps `https://tansengkai.github.io/` (its own repo) untouched, so its OAuth
+consent screen still works.
+
+Source of truth for the HTML lives at `~/.openclaw/workspace/jimat-pages/`.
+
+## Updating the pages
 
 ```bash
-# from this folder
 cd ~/.openclaw/workspace/jimat-pages
-git init -b main
-git add index.html privacy.html SETUP.md
-git commit -m "Add GitHub Pages site: homepage + privacy policy for Google OAuth consent"
-git remote add origin https://github.com/tansengkai/Jimat.git
-git push -u origin main
+# edit index.html / privacy.html
+git add -A && git commit -m "update"
+git push origin main          # main = repo content
+# then mirror to gh-pages:
+git subtree push --prefix . origin gh-pages   # or copy files and force-push as before
 ```
 
-(You'll be asked for your GitHub username + a Personal Access Token with `repo` scope as the
-password. Create one at github.com → Settings → Developer settings → Personal access tokens.)
+## Notes / gotchas
 
-### 2. Enable Pages
+- The fine-grained PAT used on 2026-10-24 (`github_pat_11AEI…`, expires **2026-11-23**) has
+  **no Pages permission**, so `POST /repos/:owner/:repo/pages` returns 403. Pages was instead
+  picked up automatically from the `gh-pages` branch. To toggle Pages settings via API later, the
+  token needs **Repository permissions → Pages: Read and write**.
+- The token is also scoped to the **Jimat repo only** — it cannot write to
+  `tansengkai.github.io`, which is why the pages were not placed there.
 
-Jimat repo → **Settings → Pages**
+## Google Cloud Console
 
-- Source: **Deploy from a branch**
-- Branch: **main**, folder: **/ (root)**
-- Save, wait ~60 seconds
-
-### 3. Verify
-
-- https://tansengkai.github.io/Jimat/
-- https://tansengkai.github.io/Jimat/privacy.html
-
-Both must return HTTP 200 and show the Jimat pages (not the calendar app).
-
-## Why the path `/Jimat/` and not the root
-
-The root `https://tansengkai.github.io/` is already serving the **Personal Calendar Assistant**
-pages used by your Calendar OAuth app. Google allows any path on an authorized domain, so Jimat
-gets its own path and neither app is disturbed.
-
-## Console settings that matter
-
-**Authorized domain** must still be `tansengkai.github.io` — that domain is already verified in
-Search Console under your Google account. If Jimat lives in a **different Google Cloud project**
-but the **same Google account**, verification carries over and you can add the domain immediately.
-If it's a different Google account, re-verify ownership of `tansengkai.github.io` in Search Console
-first (HTML file upload to the Pages site is the easiest method).
-
-**Publishing status — this is the trap that bit the Calendar app:**
-
-- If the app stays in **Testing**, Google expires refresh tokens after **7 days**.
-- For Jimat you use the `drive.file` scope, which is **non-sensitive**. Non-sensitive scopes do
-  **not** require Google's verification review.
-- So: set User type = **External** → **Publish App** → **In production**. There's no review needed
-  for `drive.file`, and refresh tokens stop expiring after 7 days.
-
-Verify later: if the token JSON has no `refresh_token_expires_in` field, the refresh token is
-permanent.
-
-## Scope used by the app
+Scope used by the app:
 
 ```
 https://www.googleapis.com/auth/drive.file
 ```
 
-`drive.file` lets the app read/write **only the files it created**. It cannot browse the rest of
-the user's Drive. This is the right scope for app-data backup and keeps you out of the restricted
-scope audit process entirely.
+`drive.file` is **non-sensitive** → no Google verification review required. Set User type =
+External, then **Publish App → In production** so refresh tokens do not expire every 7 days
+(that was the recurring failure mode on the Calendar app).
 
-## Files
-
-- `index.html` — app homepage: what Jimat does, data handling summary, links
-- `privacy.html` — full privacy policy incl. Google API Services User Data Policy / Limited Use
-  section, data deletion, and revocation instructions
+If Jimat is in a *different Google account* than the calendar project, re-verify ownership of
+`tansengkai.github.io` in Search Console first.
