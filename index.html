@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jimat — Personal Budget Tracker for Android</title>
+<meta name="description" content="Jimat is a private Android app for tracking personal savings and expenses, with optional backup to the user's own Google Drive.">
+<style>
+  :root { color-scheme: light dark; --fg:#111; --muted:#6b7280; --line:#0002; --accent:#0b74d1; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg:#e8e8e8; --muted:#9aa0a6; --line:#ffffff22; --accent:#6cb6ff; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    max-width: 760px; margin: 0 auto; padding: 48px 22px 64px;
+    line-height: 1.65; color: var(--fg); background: transparent;
+  }
+  header { margin-bottom: 2.4rem; }
+  h1 { font-size: 2rem; margin: 0 0 .3rem; letter-spacing: -.02em; }
+  .tagline { color: var(--muted); margin: 0; font-size: 1.02rem; }
+  h2 { font-size: 1.14rem; margin: 2.3rem 0 .6rem; }
+  h3 { font-size: 1rem; margin: 1.6rem 0 .4rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .38rem 0; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 999px;
+    padding: .12rem .6rem; margin-bottom: 1rem;
+  }
+  .card {
+    border: 1px solid var(--line); border-radius: 12px;
+    padding: 1.1rem 1.3rem; margin: 1.4rem 0;
+  }
+  .card h2 { margin-top: 0; }
+  footer {
+    margin-top: 3.4rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: .88rem;
+  }
+  footer a { color: var(--muted); text-decoration: underline; }
+  code { background: var(--line); padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="badge">Android · Personal use</span>
+  <h1>Jimat</h1>
+  <p class="tagline">A private, offline-first budget and savings tracker for Android.</p>
+</header>
+
+<h2>What Jimat does</h2>
+<p>
+  Jimat (Malay for “save”) is an Android application for recording daily spending, tracking savings
+  goals, and reviewing where the money went. It is built for personal use by a single developer and
+  his household — there is no sign-up, no account on our servers, and no advertising.
+</p>
+<ul>
+  <li>Record income and expenses with categories, amounts and dates.</li>
+  <li>Track monthly budgets and savings targets.</li>
+  <li>View simple summaries of spending by category and by month.</li>
+  <li>Optionally back up and restore the app's own data files using the user's personal Google Drive.</li>
+</ul>
+
+<h2>Your data stays yours</h2>
+<p>
+  All records are stored locally in the app's private storage on your own device. Nothing is uploaded
+  unless you explicitly sign in with Google and choose to back up. When you do, the backup goes to
+  <strong>your own Google Drive</strong> — never to a server operated by Jimat.
+</p>
+
+<div class="card">
+  <h2>Google Drive access</h2>
+  <p>
+    Jimat uses Google Sign-In and the Google Drive API for one purpose only: to let you save a
+    backup copy of your data to your own Drive, and to read that backup back when you restore.
+    Access is requested with the <code>drive.file</code> scope, which means the app can only see
+    files it created itself — it cannot browse, read or modify any other file in your Drive.
+  </p>
+  <p>
+    Jimat does not read Gmail, Contacts, Photos, Calendar or any other Google product.
+  </p>
+</div>
+
+<h2>Links</h2>
+<ul>
+  <li><strong>Privacy policy:</strong> <a href="./privacy.html">privacy.html</a></li>
+  <li><strong>Source code / project:</strong>
+      <a href="https://github.com/tansengkai/Jimat">github.com/tansengkai/Jimat</a></li>
+  <li><strong>Contact:</strong> <a href="mailto:tansengkai@gmail.com">tansengkai@gmail.com</a></li>
+</ul>
+
+<h2>Availability</h2>
+<p>
+  Jimat is not publicly distributed. It is a personal project, installed directly by its author,
+  and is not offered for download on Google Play or any other store.
+</p>
+
+<footer>
+  <a href="./privacy.html">Privacy Policy</a> ·
+  <a href="https://github.com/tansengkai/Jimat">GitHub</a> ·
+  Not affiliated with Google LLC. Google Drive is a trademark of Google LLC.
+</footer>
+
+</body>
+</html>

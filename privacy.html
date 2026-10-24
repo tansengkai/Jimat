@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Jimat</title>
+<meta name="description" content="Privacy policy for Jimat, a private Android budget tracker. Explains what Google user data is accessed, how it is used, stored, shared, and how to delete it.">
+<style>
+  :root { color-scheme: light dark; --fg:#111; --muted:#6b7280; --line:#0002; --accent:#0b74d1; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg:#e8e8e8; --muted:#9aa0a6; --line:#ffffff22; --accent:#6cb6ff; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    max-width: 760px; margin: 0 auto; padding: 48px 22px 64px;
+    line-height: 1.66; color: var(--fg);
+  }
+  h1 { font-size: 1.85rem; margin: 0 0 .25rem; letter-spacing: -.02em; }
+  .sub { color: var(--muted); margin: 0 0 2rem; font-size: .94rem; }
+  h2 { font-size: 1.1rem; margin: 2.1rem 0 .55rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .38rem 0; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: var(--line); padding: .1rem .35rem; border-radius: 4px; font-size: .88em; }
+  .note {
+    border-left: 3px solid var(--accent); padding: .7rem 1rem; margin: 1.4rem 0;
+    background: var(--line); border-radius: 0 8px 8px 0;
+  }
+  footer {
+    margin-top: 3.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: .88rem;
+  }
+  footer a { color: var(--muted); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="sub">Jimat · Android application · Last updated 24 October 2026</p>
+
+<p>
+  This policy explains how Jimat (“the app”) accesses, uses, stores and shares data — including
+  Google user data. Jimat is a private, personally developed Android application used by its author
+  and his household. It is not a public service and has no sign-up.
+</p>
+
+<h2>1. Summary</h2>
+<ul>
+  <li>All budget data lives on your own device.</li>
+  <li>Google access is optional and used only for backup to <strong>your own</strong> Google Drive.</li>
+  <li>No data is sent to any Jimat-operated server. There is no such server.</li>
+  <li>No advertising, no analytics, no tracking, no data sales.</li>
+</ul>
+
+<h2>2. What data the app handles</h2>
+
+<h3>2.1 Data you enter</h3>
+<p>
+  Amounts, categories, dates, notes and budget targets that you type into the app. This information
+  is stored in the app's private storage on your device.
+</p>
+
+<h3>2.2 Google user data (only if you choose to sign in)</h3>
+<ul>
+  <li><strong>Basic Google account identifier</strong> — your email address and account ID, used to
+      show which Google account is connected for backup.</li>
+  <li><strong>Google Drive app-specific files</strong> — the backup file the app itself creates.
+      Access is requested with the <code>https://www.googleapis.com/auth/drive.file</code> scope,
+      which limits the app to files it created. The app cannot see, read or modify any other file
+      in your Drive.</li>
+</ul>
+<p>
+  Jimat does not request access to Gmail, Contacts, Calendar, Photos, Location, or any other Google
+  product or scope.
+</p>
+
+<div class="note">
+  <strong>Scope note:</strong> <code>drive.file</code> is a non-sensitive, per-file scope. It grants
+  access only to files the app creates and to files you explicitly pick with the Google file picker.
+</div>
+
+<h2>3. How the data is used</h2>
+<ul>
+  <li>To record, display and summarise your own spending and savings inside the app.</li>
+  <li>To upload a backup copy of your data to your own Google Drive when you tap backup.</li>
+  <li>To download that backup back into the app when you tap restore.</li>
+  <li>To keep you signed in between sessions, so you do not have to authenticate every time.</li>
+</ul>
+<p>
+  Data is used solely to provide these features. It is never used for advertising, profiling,
+  scoring, or any secondary purpose, and it is never used to train machine-learning models.
+</p>
+
+<h2>4. How the data is stored</h2>
+<ul>
+  <li><strong>On your device:</strong> in the app's private, sandboxed storage, readable only by the
+      app under Android's app-isolation model.</li>
+  <li><strong>OAuth tokens:</strong> stored locally on the device. Access tokens are short-lived;
+      refresh tokens are kept in the app's private storage.</li>
+  <li><strong>Backups:</strong> stored in your own Google Drive, under your own Google account and
+      subject to Google's terms and security. Google's handling of data in your Drive is described in
+      the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</li>
+  <li><strong>No cloud database:</strong> the developer operates no server and holds no copy of your
+      data.</li>
+</ul>
+
+<h2>5. How the data is shared</h2>
+<p>
+  <strong>The app does not sell, rent, trade or transfer your data to any third party.</strong>
+  There are no advertising SDKs, no analytics SDKs, and no crash reporters that transmit personal
+  data.
+</p>
+<p>
+  The only outbound transfer of your data is the one you initiate: uploading a backup to your own
+  Google Drive through Google's API. That transfer is between your device and Google, not the
+  developer.
+</p>
+
+<h2>6. Data retention and deletion</h2>
+<ul>
+  <li><strong>In the app:</strong> data remains until you delete individual records, clear the app's
+      storage, or uninstall the app. Uninstalling removes all local data.</li>
+  <li><strong>In Google Drive:</strong> backups remain in your Drive until you delete them yourself.
+      You can remove them from the Drive app or at
+      <a href="https://drive.google.com/">drive.google.com</a>.</li>
+  <li><strong>Revoking access:</strong> you can revoke the app's Google access at any time at
+      <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.
+      Revoking immediately invalidates the stored tokens; the app can no longer read or write your
+      Drive.</li>
+  <li><strong>Signing out:</strong> signing out inside the app deletes the locally stored tokens.</li>
+</ul>
+
+<h2>7. Security</h2>
+<ul>
+  <li>Authentication uses Google OAuth 2.0 with PKCE; credentials are never handled by the app
+      directly.</li>
+  <li>All communication with Google APIs uses HTTPS/TLS.</li>
+  <li>Local data is protected by Android's app sandbox and, where enabled, device-level encryption
+      and screen lock.</li>
+  <li>Tokens are not transmitted anywhere except to Google's own token endpoint.</li>
+</ul>
+<p>
+  No system is perfectly secure. If you lose your device, consider revoking the app's Google access
+  from another device.
+</p>
+
+<h2>8. Google API Services User Data Policy — Limited Use</h2>
+<p>
+  Jimat's use of information received from Google APIs adheres to the
+  <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services
+  User Data Policy</a>, including the Limited Use requirements. In particular:
+</p>
+<ul>
+  <li>Google user data is used only to provide the user-facing features described in this policy.</li>
+  <li>Google user data is not transferred to third parties except as necessary to provide those
+      features, to comply with applicable law, or as part of a merger/acquisition with notice.</li>
+  <li>Google user data is not used for serving advertisements, including personalised or
+      interest-based advertising.</li>
+  <li>No human reads Google user data, except the user whose data it is, or where required for
+      security purposes, to comply with law, or with the user's explicit consent.</li>
+</ul>
+
+<h2>9. Children</h2>
+<p>
+  Jimat is not directed at children under 13 (or the applicable age in your jurisdiction), is not
+  offered to the public, and does not knowingly collect data from children.
+</p>
+
+<h2>10. International users</h2>
+<p>
+  The app itself does not transmit data across borders. Data stored in Google Drive is handled by
+  Google under its own terms and international data transfer mechanisms.
+</p>
+
+<h2>11. Changes to this policy</h2>
+<p>
+  Material changes will be published on this page with an updated revision date. Continued use of
+  the app after a change constitutes acceptance of the revised policy.
+</p>
+
+<h2>12. Contact</h2>
+<p>
+  Questions about this policy or about how Jimat handles data:
+  <a href="mailto:tansengkai@gmail.com">tansengkai@gmail.com</a>
+</p>
+
+<footer>
+  <a href="./index.html">← Back to home</a> ·
+  <a href="https://github.com/tansengkai/Jimat">Project on GitHub</a> ·
+  Jimat is not affiliated with Google LLC. Google Drive is a trademark of Google LLC.
+</footer>
+
+</body>
+</html>
